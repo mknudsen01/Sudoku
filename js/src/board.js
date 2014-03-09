@@ -16,5 +16,4 @@ SudokuApp.Board.prototype = {
       this.cells.push(cell);
     }
   }
-
 };

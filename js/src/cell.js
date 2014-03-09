@@ -6,6 +6,7 @@ SudokuApp.Cell = function(value, position){
   this.row = 0;
   this.column = 0;
   this.box = 0;
+  this.possibleValues = ['1','2','3','4','5','6','7','8','9'];
 };
 
 SudokuApp.Cell.prototype = {
