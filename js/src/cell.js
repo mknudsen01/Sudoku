@@ -32,6 +32,10 @@ SudokuApp.Cell.prototype = {
 
   assignBox: function(row, column){
     this.box = (row-1) * 3 + column;
+  },
+
+  changeValue: function(newValue){
+    this.value = newValue;
   }
 };
 ////END CELL
