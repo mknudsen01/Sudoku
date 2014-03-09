@@ -15,5 +15,13 @@ SudokuApp.Board.prototype = {
       cell.setRowColBox();
       this.cells.push(cell);
     }
+  },
+
+  printValues: function(){
+    var values = [];
+    for(var i=0; i<this.cells.length; i++){
+      values.push(this.cells[i].value);
+    }
+    return values.join('');
   }
 };

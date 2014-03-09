@@ -3,9 +3,24 @@ SudokuApp.Guesser = function(board){
 };
 
 SudokuApp.Guesser.prototype = {
+
+  zeroExists: function(){
+    var exists = false;
+    for(var i=0; i<this.board.cells.length; i++){
+      if(this.board.cells[i].value == "0"){
+        exists = true;
+      }
+    }
+    return exists;
+  },
+
   guessOnCell: function(selectedCell){
     impossibleValues = this.findImpossibleValues(selectedCell);
     this.removeImpossiblesFromCell(selectedCell, impossibleValues);
+    //how is this undefined for some of the things?
+    if(selectedCell.possibleValues.length === 1){
+      selectedCell.changeValue(selectedCell.possibleValues[0]);
+    }
   },
 
   findImpossibleValues: function(selectedCell){
