@@ -17,7 +17,6 @@ SudokuApp.Guesser.prototype = {
   guessOnCell: function(selectedCell){
     impossibleValues = this.findImpossibleValues(selectedCell);
     this.removeImpossiblesFromCell(selectedCell, impossibleValues);
-    //how is this undefined for some of the things?
     if(selectedCell.possibleValues.length === 1){
       selectedCell.changeValue(selectedCell.possibleValues[0]);
     }
