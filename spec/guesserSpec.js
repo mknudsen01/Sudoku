@@ -48,16 +48,4 @@ describe("SudokuApp.Guesser", function(){
       expect(oneMissing.cells[0].value).toEqual('4');
     });
   });
-
-  describe("zeroExists", function(){
-    it("should return true if a zero is present on the board", function(){
-      var guesser = new SudokuApp.Guesser(onesRows);
-      expect(guesser.zeroExists()).toEqual(true);
-    });
-
-    it("should return false if a zero is not present", function(){
-      var guesser = new SudokuApp.Guesser(solvedBoard);
-      expect(guesser.zeroExists()).toEqual(false);
-    });
-  });
 });
