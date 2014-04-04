@@ -1,65 +1,57 @@
-SudokuApp.Guesser = function(board){
-  this.board = board;
+SudokuApp.Guesser = function(){
 };
 
 SudokuApp.Guesser.prototype = {
-
-  zeroExists: function(){
-    var exists = false;
-    for(var i=0; i<this.board.cells.length; i++){
-      if(this.board.cells[i].value == "0"){
-        exists = true;
-      }
-    }
-    return exists;
-  },
-
-  guessOnCell: function(selectedCell){
-    impossibleValues = this.findImpossibleValues(selectedCell);
+  guessOnCell: function(board,selectedCell){
+    impossibleValues = this.findImpossibleValues(board,selectedCell);
     this.removeImpossiblesFromCell(selectedCell, impossibleValues);
     if(selectedCell.possibleValues.length === 1){
       selectedCell.changeValue(selectedCell.possibleValues[0]);
     }
   },
 
-  findImpossibleValues: function(selectedCell){
+  changedFromZero: function(cell){
+    return cell.value !== '0';
+  },
+
+  findImpossibleValues: function(board, selectedCell){
     takenValues = [];
-    takenValues = takenValues.concat(this.findSameRowValues(selectedCell));
-    takenValues = takenValues.concat(this.findSameColumnValues(selectedCell));
-    takenValues = takenValues.concat(this.findSameBoxValues(selectedCell));
+    takenValues = takenValues.concat(this.findSameRowValues(board, selectedCell));
+    takenValues = takenValues.concat(this.findSameColumnValues(board,selectedCell));
+    takenValues = takenValues.concat(this.findSameBoxValues(board,selectedCell));
     return takenValues;
   },
 
-  findSameRowValues: function(selectedCell){
+  findSameRowValues: function(board, selectedCell){
     takenValues = [];
-    for(var i=0; i<this.board.cells.length; i++){
-      if(selectedCell.row == this.board.cells[i].row){
-        if(this.board.cells[i].value !== '0'){
-          takenValues.push(this.board.cells[i].value);
+    for(var i=0; i<board.cells.length; i++){
+      if(selectedCell.row == board.cells[i].row){
+        if(board.cells[i].value !== '0'){
+          takenValues.push(board.cells[i].value);
         }
       }
     }
     return takenValues;
   },
 
-  findSameColumnValues: function(selectedCell){
+  findSameColumnValues: function(board,selectedCell){
     takenValues = [];
-    for(var i=0; i<this.board.cells.length; i++){
-      if(selectedCell.column == this.board.cells[i].column){
-        if(this.board.cells[i].value !== '0'){
-          takenValues.push(this.board.cells[i].value);
+    for(var i=0; i<board.cells.length; i++){
+      if(selectedCell.column == board.cells[i].column){
+        if(board.cells[i].value !== '0'){
+          takenValues.push(board.cells[i].value);
         }
       }
     }
     return takenValues;
   },
 
-  findSameBoxValues: function(selectedCell){
+  findSameBoxValues: function(board, selectedCell){
     takenValues = [];
-    for(var i=0; i<this.board.cells.length; i++){
-      if(selectedCell.box == this.board.cells[i].box){
-        if(this.board.cells[i].value !== '0'){
-          takenValues.push(this.board.cells[i].value);
+    for(var i=0; i<board.cells.length; i++){
+      if(selectedCell.box == board.cells[i].box){
+        if(board.cells[i].value !== '0'){
+          takenValues.push(board.cells[i].value);
         }
       }
     }
