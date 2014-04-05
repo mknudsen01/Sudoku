@@ -19,6 +19,35 @@ describe("SudokuApp.Guesser", function(){
     expect(new SudokuApp.Guesser(onesRows)).toBeDefined();
   });
 
+  describe("guessOnCell", function(){
+    it("should remove the impossible values from a cell", function(){
+      guesser.guessOnCell(onesRows, onesRows.cells[0]);
+      expect(onesRows.cells[0].possibleValues).toEqual(['2','3','4','5','6','7','8','9']);
+    });
+
+    it("should change the value of a cell if when only one value remains", function(){
+      guesser.guessOnCell(oneMissing, oneMissing.cells[0]);
+      expect(oneMissing.cells[0].value).toEqual('4');
+    });
+
+    it("should not change the value of a cell if more than one value remains", function(){
+      guesser.guessOnCell(onesRows, onesRows.cells[20]);
+      expect(onesRows.cells[20].value).toEqual('0');
+    });
+  });
+
+  describe("changedFromZero", function(){
+    it('should return true for non-zero cells', function(){
+      var cell = { value: '5' };
+      expect(guesser.changedFromZero(cell)).toBe(true);
+    });
+
+    it('should return true for non-zero cells', function(){
+      var cell = { value: '0' };
+      expect(guesser.changedFromZero(cell)).toBe(false);
+    });
+  });
+
   describe("findSameRowValues", function(){
     it("should find the values in the same row", function(){
       expect(guesser.findSameRowValues(onesRows, onesRows.cells[0])).toEqual(onesArray);
@@ -37,15 +66,5 @@ describe("SudokuApp.Guesser", function(){
     });
   });
 
-  describe("guessOnCell", function(){
-    it("should remove the impossible values from a cell", function(){
-      guesser.guessOnCell(onesRows, onesRows.cells[0]);
-      expect(onesRows.cells[0].possibleValues).toEqual(['2','3','4','5','6','7','8','9']);
-    });
 
-    it("should change the value of a cell if when only one value remains", function(){
-      guesser.guessOnCell(oneMissing, oneMissing.cells[0]);
-      expect(oneMissing.cells[0].value).toEqual('4');
-    });
-  });
 });
