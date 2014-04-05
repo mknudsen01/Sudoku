@@ -72,7 +72,7 @@ describe("SudokuApp.Guesser", function(){
 
   describe("removeImpossiblesFromCell", function(){
     it("should remove the impossible values", function(){
-      cell = { possibleValues: ['1', '2'] };
+      var cell = { possibleValues: ['1', '2'] };
       guesser.removeImpossiblesFromCell(cell, ['2']);
       expect(cell.possibleValues).toEqual(['1']);
     });
