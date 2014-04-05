@@ -69,4 +69,12 @@ describe("SudokuApp.Guesser", function(){
       expect(guesser.findSameBoxValues).toHaveBeenCalled();
     });
   });
+
+  describe("removeImpossiblesFromCell", function(){
+    it("should remove the impossible values", function(){
+      cell = { possibleValues: ['1', '2'] };
+      guesser.removeImpossiblesFromCell(cell, ['2']);
+      expect(cell.possibleValues).toEqual(['1']);
+    });
+  });
 });
