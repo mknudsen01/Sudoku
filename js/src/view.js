@@ -7,7 +7,7 @@ SudokuApp.View.prototype = {
     for(var i=0; i<this.board.cells.length; i++){
       $('.board').append('<div class="cell" id='+this.board.cells[i].position+'>'+this.board.cells[i].value+'</div>');
       if(this.board.cells[i].value !== '0'){
-        $('#'+i).css('background-color', 'blue');
+        $('#'+i).css('background-color', '#3498db');
       }
     }
   },
@@ -17,7 +17,6 @@ SudokuApp.View.prototype = {
   },
 
   updateCell: function(cell){
-    $('#'+cell.position).css('background-color', 'green');
     $('#'+cell.position).addClass('solved');
     $('#'+cell.position).text(cell.value);
   }
