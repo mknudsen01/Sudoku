@@ -17,7 +17,6 @@ SudokuApp.View.prototype = {
   },
 
   updateCell: function(cell){
-    // $('#'+cell.position).css('background-color', '#3498db');
     $('#'+cell.position).addClass('solved');
     $('#'+cell.position).text(cell.value);
   }
