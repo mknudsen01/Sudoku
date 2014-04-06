@@ -3,7 +3,7 @@ SudokuApp.Guesser = function(){
 
 SudokuApp.Guesser.prototype = {
   guessOnCell: function(board,selectedCell){
-    impossibleValues = this.findImpossibleValues(board,selectedCell);
+    var impossibleValues = this.findImpossibleValues(board,selectedCell);
     this.removeImpossiblesFromCell(selectedCell, impossibleValues);
     if(selectedCell.possibleValues.length === 1){
       selectedCell.changeValue(selectedCell.possibleValues[0]);
