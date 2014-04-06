@@ -10,7 +10,10 @@ $(document).ready(function(){
   };
   SudokuApp.game = new SudokuApp.Game(gameConfig);
 
-  SudokuApp.game.start();
+  setTimeout(function(){
+    SudokuApp.game.start();
+  }, 1000);
+
   function nextRound(){
     SudokuApp.game.playRound();
     setTimeout(function() {
