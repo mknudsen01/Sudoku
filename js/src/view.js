@@ -12,6 +12,10 @@ SudokuApp.View.prototype = {
     }
   },
 
+  clearBoard: function(){
+    $('.board').html('');
+  },
+
   updateCell: function(cell){
     $('#'+cell.position).css('background-color', 'green');
     $('#'+cell.position).addClass('solved');

@@ -7,6 +7,7 @@ SudokuApp.Game = function(config){
 SudokuApp.Game.prototype = {
   start: function(){
     this.board.createBoard();
+    this.view.clearBoard();
     this.view.displayBoard();
   },
 
